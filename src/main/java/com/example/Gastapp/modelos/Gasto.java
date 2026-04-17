@@ -14,24 +14,34 @@ public class Gasto {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY )
      //id, descripcion, fecha, valor, icono, referenciaTransaccion, canalCompra, cantidadItems, estadoGasto, numeroComprobante
-    private Long id;
-@Column(nullable = false, length = 255)
+@Column(name = "id", nullable = false, unique = true)
+private Long id;
+
+@Column(name = "descripcion", nullable = false, length = 255)
 private String descripcion;
-@Column(nullable = false)
+
+@Column(name = "fecha", nullable = false)
 private LocalDate fecha;
-@Column(nullable = false)
+
+@Column(name = "valor", nullable = false)
 private Double valor;
-@Column(length = 50)
+
+@Column(name = "icono", length = 50)
 private String icono;
-@Column(length = 100)
+
+@Column(name = "referencia_transaccion", length = 100)
 private String referenciaTransaccion;
-@Column(length = 50)
+
+@Column(name = "canal_compra", length = 50)
 private String canalCompra;
-@Column(nullable = false)
+
+@Column(name = "cantidad_items", nullable = false)
 private Integer cantidadItems;
-@Column(nullable = false, length = 50)
+
+@Column(name = "estado_gasto", nullable = false, length = 50)
 private String estadoGasto;
-@Column(length = 100)
+
+@Column(name = "numero_comprobante", length = 100)
 private String numeroComprobante;
      public Gasto() {
      }

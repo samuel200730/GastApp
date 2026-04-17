@@ -15,24 +15,34 @@ public class MetodoDePago {
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       //id, nombre, franquicia, estado, descripcion, cupoDisponible, fechaVencimiento, numeroReferencia, bancoEmisor, tipoMetodo
-    private Long id;
-@Column(nullable = false, length = 100)
+   @Column(name = "id", nullable = false, unique = true)
+private Long id;
+
+@Column(name = "nombre", nullable = false, length = 100)
 private String nombre;
-@Column(nullable = false, length = 50)
+
+@Column(name = "franquicia", nullable = false, length = 50)
 private String franquicia;
-@Column(nullable = false, length = 50)
+
+@Column(name = "estado", nullable = false, length = 50)
 private String estado;
-@Column(length = 255)
+
+@Column(name = "descripcion", length = 255)
 private String descripcion;
-@Column(nullable = false)
+
+@Column(name = "cupo_disponible", nullable = false)
 private Double cupoDisponible;
-@Column(nullable = false)
+
+@Column(name = "fecha_vencimiento", nullable = false)
 private LocalDate fechaVencimiento;
-@Column(unique = true, length = 50)
+
+@Column(name = "numero_referencia", unique = true, length = 50)
 private String numeroReferencia;
-@Column(length = 100)
+
+@Column(name = "banco_emisor", length = 100)
 private String bancoEmisor;
-@Column(nullable = false, length = 50)
+
+@Column(name = "tipo_metodo", nullable = false, length = 50)
 private String tipoMetodo;
     public MetodoDePago() {
     }

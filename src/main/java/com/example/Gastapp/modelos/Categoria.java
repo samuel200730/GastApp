@@ -13,24 +13,34 @@ public class Categoria {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 //id, nombre, fechaCreacion, responsable, justificacion, presupuestoAsignado, colorIdentificador, limiteMensual, tipoCategoria, nivelImportancia
+@Column(name = "id", nullable = false, unique = true)
 private Long id;
-@Column(nullable = false, length = 100)
+
+@Column(name = "nombre", nullable = false, length = 100)
 private String nombre;
-@Column(nullable = false)
+
+@Column(name = "fecha_creacion", nullable = false)
 private LocalDate fechaCreacion;
-@Column(nullable = false, length = 100)
+
+@Column(name = "responsable", nullable = false, length = 100)
 private String responsable;
-@Column(nullable = false, length = 255)
+
+@Column(name = "justificacion", nullable = false, length = 255)
 private String justificacion;
-@Column(nullable = false)
+
+@Column(name = "presupuesto_asignado", nullable = false)
 private Double presupuestoAsignado;
-@Column(length = 50)
+
+@Column(name = "color_identificador", length = 50)
 private String colorIdentificador;
-@Column(nullable = false)
+
+@Column(name = "limite_mensual", nullable = false)
 private Double limiteMensual;
-@Column(nullable = false, length = 50)
+
+@Column(name = "tipo_categoria", nullable = false, length = 50)
 private String tipoCategoria;
-@Column(nullable = false, length = 50)
+
+@Column(name = "nivel_importancia", nullable = false, length = 50)
 private String nivelImportancia;
 public Categoria() {
 }

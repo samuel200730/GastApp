@@ -14,24 +14,36 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     //id, nombre, tipodoc, documento, edad, correoElectronico, telefono, direccion, estadoCuenta, fechaRegistro
-    private Long id;
-@Column(nullable = false, length = 100)
+   @Column(name = "id", nullable = false, unique = true)
+private Long id;
+
+@Column(name = "nombre", nullable = false, length = 100)
 private String nombre;
-@Column(nullable = false, length = 20)
+
+@Column(name = "tipo_documento", nullable = false, length = 20)
 private String tipodoc;
-@Column(nullable = false, unique = true, length = 20)
+
+@Column(name = "documento", nullable = false, unique = true, length = 20)
 private String documento;
+
+@Column(name = "edad")
 private Integer edad;
-@Column(nullable = false, unique = true, length = 100)
+
+@Column(name = "correo_electronico", nullable = false, unique = true, length = 100)
 private String correoElectronico;
-@Column(length = 20)
+
+@Column(name = "telefono", length = 20)
 private String telefono;
-@Column(length = 150)
+
+@Column(name = "direccion", length = 150)
 private String direccion;
-@Column(nullable = false, length = 50)
+
+@Column(name = "estado_cuenta", nullable = false, length = 50)
 private String estadoCuenta;
-@Column(nullable = false)
+
+@Column(name = "fecha_registro", nullable = false)
 private LocalDate fechaRegistro;
+
     public Usuario() {
     }
     public Long getId() {

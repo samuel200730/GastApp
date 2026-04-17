@@ -13,24 +13,34 @@ public class Comercio {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //id, nit, nombre, actividad, contacto, direccion, ciudad, telefono, estadoComercio, tipoEstablecimiento
-    private Long id;
-@Column(nullable = false, unique = true, length = 20)
+@Column(name = "id", nullable = false, unique = true)
+private Long id;
+
+@Column(name = "nit", nullable = false, unique = true, length = 20)
 private String nit;
-@Column(nullable = false, length = 100)
+
+@Column(name = "nombre", nullable = false, length = 100)
 private String nombre;
-@Column(nullable = false, length = 100)
+
+@Column(name = "actividad", nullable = false, length = 100)
 private String actividad;
-@Column(length = 100)
+
+@Column(name = "contacto", length = 100)
 private String contacto;
-@Column(length = 150)
+
+@Column(name = "direccion", length = 150)
 private String direccion;
-@Column(length = 100)
+
+@Column(name = "ciudad", length = 100)
 private String ciudad;
-@Column(length = 20)
+
+@Column(name = "telefono", length = 20)
 private String telefono;
-@Column(nullable = false, length = 50)
+
+@Column(name = "estado_comercio", nullable = false, length = 50)
 private String estadoComercio;
-@Column(nullable = false, length = 50)
+
+@Column(name = "tipo_establecimiento", nullable = false, length = 50)
 private String tipoEstablecimiento;
     public Comercio() {
     }
