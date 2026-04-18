@@ -1,10 +1,15 @@
 package com.example.Gastapp.modelos;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 @Entity
@@ -14,7 +19,7 @@ public class Gasto {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY )
      //id, descripcion, fecha, valor, icono, referenciaTransaccion, canalCompra, cantidadItems, estadoGasto, numeroComprobante
-@Column(name = "id", nullable = false, unique = true)
+
 private Long id;
 
 @Column(name = "descripcion", nullable = false, length = 255)
@@ -43,6 +48,20 @@ private String estadoGasto;
 
 @Column(name = "numero_comprobante", length = 100)
 private String numeroComprobante;
+
+// creando una relacion con el modelo usuario
+// yo como gasto me relaciono con un usuario
+@ManyToOne
+@JoinColumn(name = "fk_usuario", referencedColumnName = "id")
+private Usuario usuario;
+
+@OneToMany(mappedBy = "gasto")
+private List<Comercio> comercios;
+
+
+@OneToMany(mappedBy = "gasto")
+private List<Categoria> categorias;
+
      public Gasto() {
      }
      public Long getId() {

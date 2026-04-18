@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
@@ -13,7 +15,7 @@ public class Comercio {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //id, nit, nombre, actividad, contacto, direccion, ciudad, telefono, estadoComercio, tipoEstablecimiento
-@Column(name = "id", nullable = false, unique = true)
+
 private Long id;
 
 @Column(name = "nit", nullable = false, unique = true, length = 20)
@@ -42,6 +44,13 @@ private String estadoComercio;
 
 @Column(name = "tipo_establecimiento", nullable = false, length = 50)
 private String tipoEstablecimiento;
+
+@ManyToOne
+@JoinColumn(name = "fk_gasto", referencedColumnName = "id")
+private Gasto gasto;
+ 
+
+
     public Comercio() {
     }
     public Long getId() {

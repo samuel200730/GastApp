@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 @Entity
@@ -15,7 +17,7 @@ public class MetodoDePago {
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       //id, nombre, franquicia, estado, descripcion, cupoDisponible, fechaVencimiento, numeroReferencia, bancoEmisor, tipoMetodo
-   @Column(name = "id", nullable = false, unique = true)
+
 private Long id;
 
 @Column(name = "nombre", nullable = false, length = 100)
@@ -44,6 +46,12 @@ private String bancoEmisor;
 
 @Column(name = "tipo_metodo", nullable = false, length = 50)
 private String tipoMetodo;
+
+@ManyToOne
+@JoinColumn(name = "fk_usuario", referencedColumnName = "id")
+private Usuario usuario;
+
+
     public MetodoDePago() {
     }
     public Long getId() {

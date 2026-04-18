@@ -1,10 +1,13 @@
 package com.example.Gastapp.modelos;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 @Entity
@@ -14,7 +17,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     //id, nombre, tipodoc, documento, edad, correoElectronico, telefono, direccion, estadoCuenta, fechaRegistro
-   @Column(name = "id", nullable = false, unique = true)
+
 private Long id;
 
 @Column(name = "nombre", nullable = false, length = 100)
@@ -43,6 +46,17 @@ private String estadoCuenta;
 
 @Column(name = "fecha_registro", nullable = false)
 private LocalDate fechaRegistro;
+
+// creando una relacion en el modelo gasto
+// yo como usuario me relaciono con muchos gastos
+@OneToMany(mappedBy = "usuario")
+private List<Gasto> gastos;
+
+@OneToMany(mappedBy = "usuario")
+private List<MetodoDePago> metodosdepago;
+
+
+
 
     public Usuario() {
     }
