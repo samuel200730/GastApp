@@ -3,7 +3,11 @@ package com.example.Gastapp.modelos;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.example.Gastapp.modelos.utils.TipoDocumento;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +28,8 @@ private Long id;
 private String nombre;
 
 @Column(name = "tipo_documento", nullable = false, length = 20)
-private String tipodoc;
+private TipoDocumento tipodoc;
+@Enumerated(EnumType.STRING)
 
 @Column(name = "documento", nullable = false, unique = true, length = 20)
 private String documento;
@@ -72,10 +77,10 @@ private List<MetodoDePago> metodosdepago;
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getTipodoc() {
+    public TipoDocumento getTipodoc() {
         return tipodoc;
     }
-    public void setTipodoc(String tipodoc) {
+    public void setTipodoc(TipoDocumento tipodoc) {
         this.tipodoc = tipodoc;
     }
     public String getDocumento() {
