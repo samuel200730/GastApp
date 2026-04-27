@@ -8,21 +8,18 @@ import org.springframework.stereotype.Repository;
 import com.example.Gastapp.modelos.Usuario;
 
 @Repository
-public interface IUsuarioRepositorio extends JpaRepository<Usuario,Integer> {
+public interface IUsuarioRepositorio extends JpaRepository<Usuario, Long> {
 
-    //Espacio para crear consultas personalizadas
-    List<Usuario> findByNombres(String nombres);
-    //buscar por documento (1)
-    //Optional<Usuario> findByDocumento(String documento);
+    // ✅ Buscar por nombre exacto
+    List<Usuario> findByNombre(String nombre);
 
-    //buscar por nombres que contengan nnn (lista)
-    List<Usuario> findByNombresContaining(String nombres);
+    // ✅ Buscar por nombre que contenga texto
+    List<Usuario> findByNombreContaining(String nombre);
 
-    //buscar por edad (lista)
+    // ✅ Buscar por edad
     List<Usuario> findByEdad(Integer edad);
 
-    
-
-    
-
+    // (Opcional - recomendado)
+    // Buscar por documento
+    // Optional<Usuario> findByDocumento(String documento);
 }

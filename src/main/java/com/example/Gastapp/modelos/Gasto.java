@@ -62,6 +62,10 @@ private List<Comercio> comercios;
 @OneToMany(mappedBy = "gasto")
 private List<Categoria> categorias;
 
+@ManyToOne
+@JoinColumn(name = "usuario_id")
+private Usuario usuario1;
+
      public Gasto() {
      }
      public Long getId() {
