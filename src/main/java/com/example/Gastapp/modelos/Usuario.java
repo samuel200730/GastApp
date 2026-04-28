@@ -1,9 +1,11 @@
 package com.example.Gastapp.modelos;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.Gastapp.modelos.utils.TipoDocumento;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -15,16 +17,13 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Campos básicos
     @Column(name = "nombre_completo", nullable = false, length = 100)
     private String nombre;
 
-    // ✅ ENUM CORRECTO
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_documento", nullable = false)
     private TipoDocumento tipodoc;
 
-    // ✅ STRING NORMAL (SIN @Enumerated)
     @Column(name = "documento", nullable = false, unique = true, length = 20)
     private String documento;
 
@@ -46,19 +45,14 @@ public class Usuario {
     @Column(name = "fecha_registro", nullable = false)
     private LocalDate fechaRegistro;
 
-    // ✅ RELACIÓN CORRECTA CON GASTO
-    @OneToMany(mappedBy = "usuario")
-    private List<Gasto> gastos;
+    // ❌ RELACIÓN CON GASTO ELIMINADA
 
-    // ✅ RELACIÓN CON MÉTODO DE PAGO
-    @OneToMany(mappedBy = "usuario")
-    private List<MetodoDePago> metodosDePago;
+    // ✅ ESTA SE MANTIENE
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<MetodoDePago> metodosDePago = new ArrayList<>();
 
-    // Constructor vacío
-    public Usuario() {
-    }
-
-    // Getters y Setters
+    public Usuario() {}
 
     public Long getId() {
         return id;
@@ -140,20 +134,11 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public List<Gasto> getGastos() {
-        return gastos;
-    }
-
-    public void setGastos(List<Gasto> gastos) {
-        this.gastos = gastos;
-    }
-
     public List<MetodoDePago> getMetodosDePago() {
         return metodosDePago;
     }
 
     public void setMetodosDePago(List<MetodoDePago> metodosDePago) {
         this.metodosDePago = metodosDePago;
-    
-}
+    }
 }

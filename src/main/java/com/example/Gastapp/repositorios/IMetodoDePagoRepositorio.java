@@ -6,11 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.example.Gastapp.modelos.MetodoDePago;
 
 @Repository
-public interface IMetodoDePagoRepositorio extends JpaRepository<MetodoDePago,Integer> {
+public interface IMetodoDePagoRepositorio extends JpaRepository<MetodoDePago, Long> {
 
-    //Espacio para crear consultas personalizadas
-    
-
-    
+    // Espacio para consultas personalizadas
 
 }

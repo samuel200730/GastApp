@@ -6,11 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.example.Gastapp.modelos.Categoria;
 
 @Repository
-public interface ICategoriaRepositorio extends JpaRepository<Categoria,Integer> {
+public interface ICategoriaRepositorio extends JpaRepository<Categoria, Long> {
 
-    //Espacio para crear consultas personalizadas
-    
-
-    
+    // Espacio para consultas personalizadas
 
 }

@@ -6,11 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.example.Gastapp.modelos.Comercio;
 
 @Repository
-public interface IComercioRepositorio extends JpaRepository<Comercio,Integer> {
+public interface IComercioRepositorio extends JpaRepository<Comercio, Long> {
 
-    //Espacio para crear consultas personalizadas
-    
-
-    
+    // Espacio para consultas personalizadas
 
 }
