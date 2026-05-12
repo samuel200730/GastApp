@@ -15,13 +15,40 @@ public class CategoriaControlador {
     @Autowired
     private CategoriaServicio servicio;
 
+    // GUARDAR
     @PostMapping
     public Categoria guardar(@RequestBody Categoria datos){
+
         return servicio.guardar(datos);
     }
 
+    // LISTAR
     @GetMapping
     public List<Categoria> listar(){
+
         return servicio.listar();
+    }
+
+    // BUSCAR POR ID
+    @GetMapping("/{id}")
+    public Categoria buscarPorId(@PathVariable Long id){
+
+        return servicio.buscarPorId(id);
+    }
+
+    // ACTUALIZAR
+    @PutMapping("/{id}")
+    public Categoria actualizar(
+            @PathVariable Long id,
+            @RequestBody Categoria datos){
+
+        return servicio.actualizar(id, datos);
+    }
+
+    // ELIMINAR
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+
+        servicio.eliminar(id);
     }
 }

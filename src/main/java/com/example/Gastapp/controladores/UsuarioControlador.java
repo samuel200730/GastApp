@@ -15,15 +15,40 @@ public class UsuarioControlador {
     @Autowired
     private UsuarioServicio servicio;
 
-    // ✅ GUARDAR USUARIO
+    // GUARDAR USUARIO
     @PostMapping
     public Usuario guardar(@RequestBody Usuario datos) {
+
         return servicio.guardar_usuario(datos);
     }
 
-    // ✅ LISTAR USUARIOS
+    // LISTAR USUARIOS
     @GetMapping
     public List<Usuario> listar() {
+
         return servicio.listar_usuarios();
+    }
+
+    // BUSCAR USUARIO POR ID
+    @GetMapping("/{id}")
+    public Usuario buscarPorId(@PathVariable Long id){
+
+        return servicio.buscarPorId(id);
+    }
+
+    // ACTUALIZAR USUARIO
+    @PutMapping("/{id}")
+    public Usuario actualizar(
+            @PathVariable Long id,
+            @RequestBody Usuario datos){
+
+        return servicio.actualizar(id, datos);
+    }
+
+    // ELIMINAR USUARIO
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+
+        servicio.eliminar(id);
     }
 }

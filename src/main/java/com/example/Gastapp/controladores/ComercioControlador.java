@@ -15,13 +15,40 @@ public class ComercioControlador {
     @Autowired
     private ComercioServicio servicio;
 
+    // GUARDAR
     @PostMapping
     public Comercio guardar(@RequestBody Comercio datos){
+
         return servicio.guardar(datos);
     }
 
+    // LISTAR
     @GetMapping
     public List<Comercio> listar(){
+
         return servicio.listar();
+    }
+
+    // BUSCAR POR ID
+    @GetMapping("/{id}")
+    public Comercio buscarPorId(@PathVariable Long id){
+
+        return servicio.buscarPorId(id);
+    }
+
+    // ACTUALIZAR
+    @PutMapping("/{id}")
+    public Comercio actualizar(
+            @PathVariable Long id,
+            @RequestBody Comercio datos){
+
+        return servicio.actualizar(id, datos);
+    }
+
+    // ELIMINAR
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+
+        servicio.eliminar(id);
     }
 }

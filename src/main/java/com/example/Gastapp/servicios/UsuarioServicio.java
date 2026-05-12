@@ -12,37 +12,71 @@ import com.example.Gastapp.repositorios.IUsuarioRepositorio;
 
 @Service
 public class UsuarioServicio {
+
     @Autowired
     private IUsuarioRepositorio repositorio;
 
-     public Usuario guardar_usuario(Usuario datosUsuario){
+    // GUARDAR USUARIO
+    public Usuario guardar_usuario(Usuario datosUsuario){
 
-        //validar la operacion que me estan pidiendo hacer
-        if(datosUsuario.getNombre()==null || datosUsuario.getNombre().isBlank() || datosUsuario.getNombre().isEmpty()){
+        if(datosUsuario.getNombre() == null || datosUsuario.getNombre().isBlank()){
 
             throw new ResponseStatusException(
                 HttpStatus.BAD_REQUEST,
-                "El nombre del usuario es obligatorio, revisa por favor"
+                "El nombre del usuario es obligatorio"
             );
-
         }
 
-        if(datosUsuario.getDocumento().length()<5){
+        if(datosUsuario.getDocumento() == null || datosUsuario.getDocumento().length() < 5){
+
             throw new ResponseStatusException(
                 HttpStatus.BAD_REQUEST,
-                "el documento es invalido"
+                "El documento es invalido"
             );
         }
 
-        //Despues de las validaciones intento guardar los datos que me enviaron
         return repositorio.save(datosUsuario);
-        
     }
 
-    //servicio para listar todos los usuarios en BD
-
+    // LISTAR USUARIOS
     public List<Usuario> listar_usuarios(){
+
         return repositorio.findAll();
     }
-    
+
+    // BUSCAR USUARIO POR ID
+    public Usuario buscarPorId(Long id){
+
+        return repositorio.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Usuario no encontrado"
+                ));
+    }
+
+    // ACTUALIZAR USUARIO
+    public Usuario actualizar(Long id, Usuario datos){
+
+        Usuario usuarioBuscado = buscarPorId(id);
+
+        usuarioBuscado.setNombre(datos.getNombre());
+        usuarioBuscado.setTipodoc(datos.getTipodoc());
+        usuarioBuscado.setDocumento(datos.getDocumento());
+        usuarioBuscado.setEdad(datos.getEdad());
+        usuarioBuscado.setCorreoElectronico(datos.getCorreoElectronico());
+        usuarioBuscado.setTelefono(datos.getTelefono());
+        usuarioBuscado.setDireccion(datos.getDireccion());
+        usuarioBuscado.setEstadoCuenta(datos.getEstadoCuenta());
+        usuarioBuscado.setFechaRegistro(datos.getFechaRegistro());
+
+        return repositorio.save(usuarioBuscado);
+    }
+
+    // ELIMINAR USUARIO
+    public void eliminar(Long id){
+
+        Usuario usuarioBuscado = buscarPorId(id);
+
+        repositorio.delete(usuarioBuscado);
+    }
 }
