@@ -16,33 +16,27 @@ public class GastoServicio {
     @Autowired
     private IGastoRepositorio repositorio;
 
-    // GUARDAR
-    public Gasto guardar(Gasto datos){
-
+    public Gasto guardar(Gasto datos) {
         return repositorio.save(datos);
     }
 
-    // LISTAR
-    public List<Gasto> listar(){
-
+    public List<Gasto> listar() {
         return repositorio.findAll();
     }
 
-    // BUSCAR POR ID
-    public Gasto buscarPorId(Long id){
-
+    public Gasto buscarPorId(Long id) {
         return repositorio.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Gasto no encontrado"
-                ));
+                        HttpStatus.NOT_FOUND, "Gasto no encontrado"));
     }
 
-    // ACTUALIZAR
-    public Gasto actualizar(Long id, Gasto datos){
+    // ✅ AGREGADO
+    public List<Gasto> buscarPorUsuario(Long usuarioId) {
+        return repositorio.findByUsuarioId(usuarioId);
+    }
 
+    public Gasto actualizar(Long id, Gasto datos) {
         Gasto gastoBuscado = buscarPorId(id);
-
         gastoBuscado.setDescripcion(datos.getDescripcion());
         gastoBuscado.setFecha(datos.getFecha());
         gastoBuscado.setValor(datos.getValor());
@@ -52,15 +46,11 @@ public class GastoServicio {
         gastoBuscado.setCantidadItems(datos.getCantidadItems());
         gastoBuscado.setEstadoGasto(datos.getEstadoGasto());
         gastoBuscado.setNumeroComprobante(datos.getNumeroComprobante());
-
         return repositorio.save(gastoBuscado);
     }
 
-    // ELIMINAR
-    public void eliminar(Long id){
-
+    public void eliminar(Long id) {
         Gasto gastoBuscado = buscarPorId(id);
-
         repositorio.delete(gastoBuscado);
     }
 }

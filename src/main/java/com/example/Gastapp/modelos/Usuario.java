@@ -45,100 +45,51 @@ public class Usuario {
     @Column(name = "fecha_registro", nullable = false)
     private LocalDate fechaRegistro;
 
-    // ❌ RELACIÓN CON GASTO ELIMINADA
+    // ✅ AGREGADO
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Gasto> gastos = new ArrayList<>();
 
-    // ✅ ESTA SE MANTIENE
     @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<MetodoDePago> metodosDePago = new ArrayList<>();
 
     public Usuario() {}
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public TipoDocumento getTipodoc() { return tipodoc; }
+    public void setTipodoc(TipoDocumento tipodoc) { this.tipodoc = tipodoc; }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getDocumento() { return documento; }
+    public void setDocumento(String documento) { this.documento = documento; }
 
-    public TipoDocumento getTipodoc() {
-        return tipodoc;
-    }
+    public Integer getEdad() { return edad; }
+    public void setEdad(Integer edad) { this.edad = edad; }
 
-    public void setTipodoc(TipoDocumento tipodoc) {
-        this.tipodoc = tipodoc;
-    }
+    public String getCorreoElectronico() { return correoElectronico; }
+    public void setCorreoElectronico(String correoElectronico) { this.correoElectronico = correoElectronico; }
 
-    public String getDocumento() {
-        return documento;
-    }
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
+    public String getDireccion() { return direccion; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
 
-    public Integer getEdad() {
-        return edad;
-    }
+    public String getEstadoCuenta() { return estadoCuenta; }
+    public void setEstadoCuenta(String estadoCuenta) { this.estadoCuenta = estadoCuenta; }
 
-    public void setEdad(Integer edad) {
-        this.edad = edad;
-    }
+    public LocalDate getFechaRegistro() { return fechaRegistro; }
+    public void setFechaRegistro(LocalDate fechaRegistro) { this.fechaRegistro = fechaRegistro; }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
+    // ✅ AGREGADO
+    public List<Gasto> getGastos() { return gastos; }
+    public void setGastos(List<Gasto> gastos) { this.gastos = gastos; }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getEstadoCuenta() {
-        return estadoCuenta;
-    }
-
-    public void setEstadoCuenta(String estadoCuenta) {
-        this.estadoCuenta = estadoCuenta;
-    }
-
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public List<MetodoDePago> getMetodosDePago() {
-        return metodosDePago;
-    }
-
-    public void setMetodosDePago(List<MetodoDePago> metodosDePago) {
-        this.metodosDePago = metodosDePago;
-    }
+    public List<MetodoDePago> getMetodosDePago() { return metodosDePago; }
+    public void setMetodosDePago(List<MetodoDePago> metodosDePago) { this.metodosDePago = metodosDePago; }
 }

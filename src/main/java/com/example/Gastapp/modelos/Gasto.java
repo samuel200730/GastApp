@@ -36,7 +36,10 @@ public class Gasto {
 
     private String numeroComprobante;
 
-    // ❌ NO hay relación con Usuario
+    // ✅ AGREGADO
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario", referencedColumnName = "id")
+    private Usuario usuario;
 
     @JsonIgnore
     @OneToMany(mappedBy = "gasto")
@@ -48,99 +51,43 @@ public class Gasto {
 
     public Gasto() {}
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    public Double getValor() { return valor; }
+    public void setValor(Double valor) { this.valor = valor; }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
+    public String getIcono() { return icono; }
+    public void setIcono(String icono) { this.icono = icono; }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
+    public String getReferenciaTransaccion() { return referenciaTransaccion; }
+    public void setReferenciaTransaccion(String referenciaTransaccion) { this.referenciaTransaccion = referenciaTransaccion; }
 
-    public Double getValor() {
-        return valor;
-    }
+    public String getCanalCompra() { return canalCompra; }
+    public void setCanalCompra(String canalCompra) { this.canalCompra = canalCompra; }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
+    public Integer getCantidadItems() { return cantidadItems; }
+    public void setCantidadItems(Integer cantidadItems) { this.cantidadItems = cantidadItems; }
 
-    public String getIcono() {
-        return icono;
-    }
+    public String getEstadoGasto() { return estadoGasto; }
+    public void setEstadoGasto(String estadoGasto) { this.estadoGasto = estadoGasto; }
 
-    public void setIcono(String icono) {
-        this.icono = icono;
-    }
+    public String getNumeroComprobante() { return numeroComprobante; }
+    public void setNumeroComprobante(String numeroComprobante) { this.numeroComprobante = numeroComprobante; }
 
-    public String getReferenciaTransaccion() {
-        return referenciaTransaccion;
-    }
+    // ✅ AGREGADO
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    public void setReferenciaTransaccion(String referenciaTransaccion) {
-        this.referenciaTransaccion = referenciaTransaccion;
-    }
+    public List<Comercio> getComercios() { return comercios; }
+    public void setComercios(List<Comercio> comercios) { this.comercios = comercios; }
 
-    public String getCanalCompra() {
-        return canalCompra;
-    }
-
-    public void setCanalCompra(String canalCompra) {
-        this.canalCompra = canalCompra;
-    }
-
-    public Integer getCantidadItems() {
-        return cantidadItems;
-    }
-
-    public void setCantidadItems(Integer cantidadItems) {
-        this.cantidadItems = cantidadItems;
-    }
-
-    public String getEstadoGasto() {
-        return estadoGasto;
-    }
-
-    public void setEstadoGasto(String estadoGasto) {
-        this.estadoGasto = estadoGasto;
-    }
-
-    public String getNumeroComprobante() {
-        return numeroComprobante;
-    }
-
-    public void setNumeroComprobante(String numeroComprobante) {
-        this.numeroComprobante = numeroComprobante;
-    }
-
-    public List<Comercio> getComercios() {
-        return comercios;
-    }
-
-    public void setComercios(List<Comercio> comercios) {
-        this.comercios = comercios;
-    }
-
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
+    public List<Categoria> getCategorias() { return categorias; }
+    public void setCategorias(List<Categoria> categorias) { this.categorias = categorias; }
 }
