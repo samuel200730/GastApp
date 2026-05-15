@@ -16,25 +16,29 @@ public class GastoServicio {
     @Autowired
     private IGastoRepositorio repositorio;
 
+    // GUARDAR
     public Gasto guardar(Gasto datos) {
         return repositorio.save(datos);
     }
 
+    // LISTAR
     public List<Gasto> listar() {
         return repositorio.findAll();
     }
 
+    // BUSCAR POR ID
     public Gasto buscarPorId(Long id) {
         return repositorio.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Gasto no encontrado"));
     }
 
-    // ✅ AGREGADO
+    // ✅ AGREGADO: BUSCAR POR USUARIO
     public List<Gasto> buscarPorUsuario(Long usuarioId) {
         return repositorio.findByUsuarioId(usuarioId);
     }
 
+    // ACTUALIZAR
     public Gasto actualizar(Long id, Gasto datos) {
         Gasto gastoBuscado = buscarPorId(id);
         gastoBuscado.setDescripcion(datos.getDescripcion());
@@ -46,9 +50,12 @@ public class GastoServicio {
         gastoBuscado.setCantidadItems(datos.getCantidadItems());
         gastoBuscado.setEstadoGasto(datos.getEstadoGasto());
         gastoBuscado.setNumeroComprobante(datos.getNumeroComprobante());
+        // ✅ AGREGADO
+        gastoBuscado.setUsuario(datos.getUsuario());
         return repositorio.save(gastoBuscado);
     }
 
+    // ELIMINAR
     public void eliminar(Long id) {
         Gasto gastoBuscado = buscarPorId(id);
         repositorio.delete(gastoBuscado);
