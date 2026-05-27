@@ -56,8 +56,8 @@ public class GastoServicio {
     }
 
     // ELIMINAR
-    public void eliminar(Long id) {
-        Gasto gastoBuscado = buscarPorId(id);
-        repositorio.delete(gastoBuscado);
-    }
+   public void eliminar(Long id) {
+    if (!repositorio.existsById(id)) return;
+    repositorio.deleteById(id);
+}
 }

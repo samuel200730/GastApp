@@ -57,10 +57,8 @@ public class ComercioServicio {
     }
 
     // ELIMINAR
-    public void eliminar(Long id){
-
-        Comercio comercioBuscado = buscarPorId(id);
-
-        repositorio.delete(comercioBuscado);
-    }
+   public void eliminar(Long id){
+    if (!repositorio.existsById(id)) return;
+    repositorio.deleteById(id);
+}
 }

@@ -3,6 +3,7 @@ package com.example.Gastapp.controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.Gastapp.modelos.Comercio;
@@ -46,9 +47,9 @@ public class ComercioControlador {
     }
 
     // ELIMINAR
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id){
-
-        servicio.eliminar(id);
-    }
+@DeleteMapping("/{id}")
+public ResponseEntity<Void> eliminar(@PathVariable Long id){
+    servicio.eliminar(id);
+    return ResponseEntity.noContent().build();
+}
 }

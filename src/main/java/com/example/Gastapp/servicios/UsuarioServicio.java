@@ -73,10 +73,8 @@ public class UsuarioServicio {
     }
 
     // ELIMINAR USUARIO
-    public void eliminar(Long id){
-
-        Usuario usuarioBuscado = buscarPorId(id);
-
-        repositorio.delete(usuarioBuscado);
-    }
+  public void eliminar(Long id){
+    if (!repositorio.existsById(id)) return;
+    repositorio.deleteById(id);
+}
 }

@@ -57,10 +57,8 @@ public class MetodoDePagoServicio {
     }
 
     // ELIMINAR
-    public void eliminar(Long id){
-
-        MetodoDePago metodoBuscado = buscarPorId(id);
-
-        repositorio.delete(metodoBuscado);
-    }
+   public void eliminar(Long id){
+    if (!repositorio.existsById(id)) return;
+    repositorio.deleteById(id);
+}
 }

@@ -57,10 +57,8 @@ public class CategoriaServicio {
     }
 
     // ELIMINAR
-    public void eliminar(Long id){
-
-        Categoria categoriaBuscada = buscarPorId(id);
-
-        repositorio.delete(categoriaBuscada);
-    }
+   public void eliminar(Long id){
+    if (!repositorio.existsById(id)) return;
+    repositorio.deleteById(id);
+}
 }
